@@ -23,13 +23,14 @@
         "symfony/twig-bundle": "4.2.*",
         "symfony/validator": "4.2.*",
         "symfony/web-link": "4.2.*",
+        "phpunit/phpunit": "6.5.*",
         "symfony/yaml": "4.2.*"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
-        "phpunit/phpunit": "3.7.*",
+        "phpunit/phpunit": "6.5.*",
         "symfony/test-pack": "*",
         "symfony/web-server-bundle": "4.2.*"
     },
