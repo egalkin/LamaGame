@@ -26,7 +26,7 @@ You can get access to the game on
 
 # Testing
 
-To run test in docker image execute ```$ ./run_tests.sh``` \
+To run test in docker image execute ```$ bin/run_tests.sh``` \
 To run test locally execute ```$ php bin/phpunit``` in ```$ apps/lama_game``` folder
 
 
