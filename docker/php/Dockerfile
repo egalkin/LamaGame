@@ -25,5 +25,5 @@ WORKDIR /usr/src/app
 COPY apps/lama_game /usr/src/app
 COPY apps/lama_game/composer.json /usr/src/app/composer/json
 
-RUN chmod -R 777 var/cache var/log
+RUN chmod -R 777 .
 RUN PATH=$PATH:/usr/src/apps/vendor/bin:bin
