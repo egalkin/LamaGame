@@ -23,7 +23,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 WORKDIR /usr/src/app
 
 COPY apps/lama_game /usr/src/app
-COPY apps/lama_game/composer.json /usr/src/app/composer/json
+COPY apps/lama_game/composer.json /usr/src/app/composer.json
 
 RUN chmod -R 777 .
 
