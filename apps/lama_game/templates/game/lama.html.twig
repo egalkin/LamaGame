@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lama Game</title>
+</head>
+<body>
+<form method="post" action="/game/lama">
+    <p>
+        <select name='direction[]' multiple size='З'>
+            <option value="1">Север</option>
+            <option value="2">Юг</option>
+            <option value="3">Запад</option>
+            <option value="4">Восток</option>
+        </select>
+    </p>
+    <p><input type='submit' value='Отправить'></p>
+</form>
+{% if finished %}
+    <form method="post" action="/game/lama/reset">
+        <p><input type='submit' value='Начать заново'></p>
+    </form>
+{% endif %}
+<p> {{ status }}</p>
+</body>
+</html>
