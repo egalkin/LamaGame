@@ -72,7 +72,7 @@ class GameBoard
         $this->boardSize = $boardSize;
         $this->maxStepsNum = 15;
         $this->scareStepsNum = $this->boardSize / 3;
-        $this->curState = new Point(0, $boardSize);
+        $this->curState = new Point(0, $boardSize-1);
         $this->prepareToNewGame();
     }
 

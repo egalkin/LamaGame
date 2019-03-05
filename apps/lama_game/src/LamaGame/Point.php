@@ -77,7 +77,7 @@ class Point
     public function resetToOriginPosition(int $n)
     {
         $this->x = 0;
-        $this->y = $n;
+        $this->y = $n-1;
     }
 
 }
