@@ -18,7 +18,6 @@ class LamaTest extends TestCase
     {
         $point = new Lama(0,0);
         $point->move(-5, 5);
-
         $this->assertEquals($point, new Lama(-5,5));
     }
 

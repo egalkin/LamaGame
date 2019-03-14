@@ -8,7 +8,8 @@
 
 namespace App\Tests\LamaGame;
 
-use App\LamaGame\Direction;
+
+use App\LamaGame\Abstraction\Direction;
 use App\LamaGame\Lama;
 use App\LamaGame\LamaGameBoard;
 use App\LamaGame\ScareException;
