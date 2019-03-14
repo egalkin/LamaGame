@@ -6,7 +6,7 @@
  * Time: 18:32
  */
 
-namespace App\LamaGame;
+namespace App\LamaGame\Abstraction;
 
 
 /**
