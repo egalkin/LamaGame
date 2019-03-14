@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 class PointTest extends TestCase
 {
-    public function testMoving()
+    public function testPointMoving()
     {
         $point = new Point(0,0);
         $point->move(-5, 5);
@@ -21,7 +21,7 @@ class PointTest extends TestCase
         $this->assertEquals($point, new Point(-5,5));
     }
 
-    public function testReset()
+    public function testPointReset()
     {
         $boardSize = 15;
         $point = new Point(512,128);

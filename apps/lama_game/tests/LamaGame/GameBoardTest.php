@@ -16,14 +16,14 @@ use PHPUnit\Framework\TestCase;
 
 class GameBoardTest extends TestCase
 {
-    public function testCorrectMoving()
+    public function testCorrectLamaMoving()
     {
         $gameBoard = new GameBoard(10);
         $gameBoard->move(Direction::South);
         $this->assertEquals($gameBoard->getPoint(), new Point(0, $gameBoard->getBoardSize()-2));
     }
 
-    public function testIncorrectMoving()
+    public function testCaseWhenLamaTryToLeaveFieldBorder()
     {
         $gameBoard = new GameBoard(10);
         $gameBoard->move(Direction::West);
