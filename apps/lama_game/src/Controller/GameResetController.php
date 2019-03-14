@@ -8,7 +8,7 @@
 
 namespace App\Controller;
 
-use App\LamaGame\GameBoard;
+use App\LamaGame\LamaGameBoard;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,7 +25,7 @@ class GameResetController extends AbstractController
     function resetGame(SessionInterface $session): Response
     {
         if (!$session->has("gameBoard"))
-            $session->set('gameBoard', new GameBoard(10));
+            $session->set('gameBoard', new LamaGameBoard(10));
         $gameBoard = $session->get("gameBoard");
         $gameBoard->prepareToNewGame();
         return $this->redirectToRoute('app_game');

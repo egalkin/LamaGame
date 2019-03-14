@@ -8,7 +8,7 @@
 
 namespace App\Controller;
 
-use App\LamaGame\GameBoard;
+use App\LamaGame\LamaGameBoard;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +27,7 @@ class GameController extends AbstractController
     function ruleGame(Request $request, SessionInterface $session): Response
     {
         if (!$session->has("gameBoard"))
-            $session->set('gameBoard', new GameBoard(10));
+            $session->set('gameBoard', new LamaGameBoard(10));
         $gameBoard = $session->get("gameBoard");
         if ($request->isMethod('GET')) {
             return $this->render('game/lama.html.twig', [
