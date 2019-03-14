@@ -11,69 +11,69 @@ namespace App\LamaGame;
 use App\LamaGame\Exception\ScareException;
 
 /**
- * Class GameBoard
+ * Class AbstractGameBoard
  * @package App\LamaGame
  */
-class GameBoard
+abstract class AbstractGameBoard
 {
 
-    private static $walkingMessage = "До конца прогулки осталось: ";
+    protected static $walkingMessage = "До конца прогулки осталось: ";
 
     /**
      * Размер доски
      *
      * @var int
      */
-    private $boardSize;
+    protected $boardSize;
 
     /**
      * Точка отвечающая за положение фигуры на доске
      *
-     * @var Point
+     * @var AbstractGamePiece
      */
-    private $curState;
-
-    /**
-     * Число шагов после которых игра завершается
-     *
-     * @var int
-     */
-    private $maxStepsNum;
-
-    /**
-     * Число пройденный шагов
-     *
-     * @var int
-     */
-    private $stepsNum;
-
-    /**
-     * Число шагов на которое фигура уходи вглубь поля в случае попытки выйти за границу
-     * @var int
-     */
-    private $scareStepsNum;
+    protected $gamePiece;
 
     /**
      * Текущий статус игры
      *
      * @var string
      */
-    private $status;
+    protected $status;
+
+    /**
+     * Число пройденный шагов
+     *
+     * @var int
+     */
+    protected $stepsNum;
 
     /**
      * Показывает завершена ли игра или нет.
      *
      * @var bool
      */
-    private $finished;
+    protected $finished;
+
+    /**
+     * Число шагов после которых игра завершается
+     *
+     * @var int
+     */
+    protected $maxStepsNum;
+
+
+    /**
+     * Число шагов на которое фигура уходи вглубь поля в случае попытки выйти за границу
+     * @var int
+     */
+    protected $scareStepsNum;
+
 
     public function __construct(int $boardSize)
     {
         $this->boardSize = $boardSize;
         $this->maxStepsNum = 15;
         $this->scareStepsNum = $this->boardSize / 3;
-        $this->curState = new Point(0, $boardSize-1);
-        $this->prepareToNewGame();
     }
 
 
@@ -83,9 +83,8 @@ class GameBoard
      */
     public function prepareToNewGame()
     {
-        $this->curState->resetToOriginPosition($this->boardSize);
+        $this->gamePiece->resetToOriginPosition($this->boardSize);
         $this->stepsNum = 0;
-        $this->status = "Я готова к прогулке, пойдем скорее гулять.";
         $this->finished = false;
     }
 
@@ -99,9 +98,9 @@ class GameBoard
         return $this->status;
     }
 
-    public function getPoint(): Point
+    public function getPoint(): AbstractGamePiece
     {
-        return $this->curState;
+        return $this->gamePiece;
     }
 
     public function getScareStepsNum(): int
@@ -127,33 +126,28 @@ class GameBoard
      */
     public function move(int $direction): string
     {
-        $this->finished = $this->stepsNum == $this->maxStepsNum-1;
-        if ($this->finished) {
-            $this->status = "Я нагулялась, пойду ка домой.";
-        } else {
-            try {
-                switch ($direction) {
-                    case Direction::North:
-                        $this->moveY(1);
-                        break;
-                    case Direction::South:
-                        $this->moveY(-1);
-                        break;
-                    case Direction::West:
-                        $this->moveX(-1);
-                        break;
-                    case Direction::East:
-                        $this->moveX(1);
-                        break;
-                }
-            } catch (ScareException $ex) {
-                $this->status = $ex->getMessage();
+        try {
+            $stepLength = $this->gamePiece->getStepLength();
+            switch ($direction) {
+                case Direction::North:
+                    $this->moveY($stepLength);
+                    break;
+                case Direction::South:
+                    $this->moveY(-$stepLength);
+                    break;
+                case Direction::West:
+                    $this->moveX(-$stepLength);
+                    break;
+                case Direction::East:
+                    $this->moveX($stepLength);
+                    break;
             }
-            $this->stepsNum++;
+        } catch (ScareException $ex) {
+            $this->status = $ex->getMessage();
         }
+        $this->stepsNum++;
         return $this->status;
     }
-
 
 
     /**
@@ -167,16 +161,16 @@ class GameBoard
      */
     private function moveX(int $dx)
     {
-        $newPosition = $this->curState->getX() + $dx;
+        $newPosition = $this->gamePiece->getX() + $dx;
         if ($newPosition >= 0 && $newPosition < $this->boardSize) {
-            $this->curState->move($dx, 0);
-            $this->status = self::$walkingMessage . ($this->maxStepsNum - $this->stepsNum - 1) .  " шагов";
+            $this->gamePiece->move($dx, 0);
+            $this->status = self::$walkingMessage . ($this->maxStepsNum - $this->stepsNum - 1) . " шагов";
             return;
         } else {
             if ($newPosition < 0) {
-                $this->curState->move($this->scareStepsNum, 0);
+                $this->gamePiece->move($this->scareStepsNum, 0);
             } else {
-                $this->curState->move(-$this->scareStepsNum, 0);
+                $this->gamePiece->move(-$this->scareStepsNum, 0);
             }
             throw new ScareException();
         }
@@ -194,15 +188,15 @@ class GameBoard
      */
     private function moveY(int $dy)
     {
-        $newPosition = $this->curState->getY() + $dy;
+        $newPosition = $this->gamePiece->getY() + $dy;
         if ($newPosition >= 0 && $newPosition < $this->boardSize) {
-            $this->curState->move(0, $dy);
-            $this->status = self::$walkingMessage . ($this->maxStepsNum - $this->stepsNum - 1) .  " шагов";
+            $this->gamePiece->move(0, $dy);
+            $this->status = self::$walkingMessage . ($this->maxStepsNum - $this->stepsNum - 1) . " шагов";
         } else {
             if ($newPosition < 0) {
-                $this->curState->move(0, $this->scareStepsNum);
+                $this->gamePiece->move(0, $this->scareStepsNum);
             } else {
-                $this->curState->move(0, -$this->scareStepsNum);
+                $this->gamePiece->move(0, -$this->scareStepsNum);
             }
             throw new ScareException();
         }

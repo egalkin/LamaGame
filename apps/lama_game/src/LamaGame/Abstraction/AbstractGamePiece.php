@@ -10,10 +10,10 @@
 namespace App\LamaGame;
 
 /**
- * Class Point
+ * Class AbstractGamePiece
  * @package App\LamaGame
  */
-class Point
+abstract class AbstractGamePiece
 {
 
     /**
@@ -30,11 +30,19 @@ class Point
      */
     private $y;
 
+    /**
+     * Число шагов на которое ходит игровая фишка за один ход.
+     *
+     * @var int
+     */
+    private $stepLength;
 
-    public function __construct(int $x, int $y)
+
+    public function __construct(int $x, int $y, int $stepLength)
     {
         $this->x = $x;
         $this->y = $y;
+        $this->stepLength = $stepLength;
     }
 
     public function getX(): int
@@ -45,6 +53,11 @@ class Point
     public function getY(): int
     {
         return $this->y;
+    }
+
+    public function getStepLength(): int
+    {
+        return $this->stepLength;
     }
 
 
@@ -77,7 +90,7 @@ class Point
     public function resetToOriginPosition(int $n)
     {
         $this->x = 0;
-        $this->y = $n-1;
+        $this->y = $n - 1;
     }
 
 }

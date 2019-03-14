@@ -8,25 +8,25 @@
 
 namespace App\Tests\LamaGame;
 
-use App\LamaGame\Point;
+use App\LamaGame\AbstractGamePiece;
 use PHPUnit\Framework\TestCase;
 
 class PointTest extends TestCase
 {
     public function testPointMoving()
     {
-        $point = new Point(0,0);
+        $point = new AbstractGamePiece(0,0);
         $point->move(-5, 5);
 
-        $this->assertEquals($point, new Point(-5,5));
+        $this->assertEquals($point, new AbstractGamePiece(-5,5));
     }
 
     public function testPointReset()
     {
         $boardSize = 15;
-        $point = new Point(512,128);
+        $point = new AbstractGamePiece(512,128);
         $point->resetToOriginPosition($boardSize);
 
-        $this->assertEquals($point, new Point(0, $boardSize-1));
+        $this->assertEquals($point, new AbstractGamePiece(0, $boardSize-1));
     }
 }
