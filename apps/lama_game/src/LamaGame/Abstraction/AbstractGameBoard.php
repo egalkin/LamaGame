@@ -79,7 +79,6 @@ abstract class AbstractGameBoard
         $this->scareStepsNum = $this->boardSize / 3;
     }
 
-
     /**
      * Готовит внутреннее состояние поля к новой игре.
      *
@@ -90,6 +89,17 @@ abstract class AbstractGameBoard
         $this->stepsNum = 0;
         $this->finished = false;
     }
+
+
+    /**
+     * Эта функция определяет содержание ScareException.
+     *
+     *
+     * @throws ScareException
+     * @return mixed
+     */
+    protected abstract function raiseScareException() ;
+
 
     public function isFinished()
     {
@@ -175,7 +185,7 @@ abstract class AbstractGameBoard
             } else {
                 $this->gamePiece->move(-$this->scareStepsNum, 0);
             }
-            throw new ScareException();
+            $this->raiseScareException();
         }
     }
 
@@ -201,8 +211,10 @@ abstract class AbstractGameBoard
             } else {
                 $this->gamePiece->move(0, -$this->scareStepsNum);
             }
-            throw new ScareException();
+            $this->raiseScareException();
         }
     }
+
+
 
 }

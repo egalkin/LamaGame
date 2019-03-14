@@ -19,7 +19,7 @@ use Throwable;
  */
 class ScareException extends Exception
 {
-    public function __construct(string $message = "Я убежала внутрь поля.", int $code = 0, Throwable $previous = null)
+    public function __construct(string $message, int $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

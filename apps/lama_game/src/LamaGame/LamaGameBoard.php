@@ -9,6 +9,7 @@
 namespace App\LamaGame;
 
 use App\LamaGame\Abstraction\AbstractGameBoard;
+use App\LamaGame\Exception\ScareException;
 
 /**
  * Class LamaGameBoard
@@ -36,6 +37,18 @@ class LamaGameBoard extends AbstractGameBoard
     {
         parent::prepareToNewGame();
         $this->status = "Я готова к прогулке, пойдем скорее гулять.";
+    }
+
+    /**
+     * Функция определяет с каким сообщение будет брошено исключение.
+     * Определяет абстрактный метод из суперкласса.
+     *
+     * @return mixed|void
+     * @throws ScareException
+     */
+    protected function raiseScareException()
+    {
+        throw new ScareException("Я убежала внутрь поля.");
     }
 
     /**
