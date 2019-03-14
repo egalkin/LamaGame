@@ -10,6 +10,13 @@ namespace App\LamaGame;
 
 use App\LamaGame\Abstraction\AbstractGameBoard;
 
+/**
+ * Class LamaGameBoard
+ *
+ * Класс, представляющий доску для игры с ламой.
+ *
+ * @package App\LamaGame
+ */
 class LamaGameBoard extends AbstractGameBoard
 {
     public function __construct(int $boardSize)
@@ -19,12 +26,25 @@ class LamaGameBoard extends AbstractGameBoard
         $this->prepareToNewGame();
     }
 
+
+    /**
+     * Готовит игровую доску к новой игре.
+     * Переопределяет метод из суперкласса.
+     *
+     */
     public function prepareToNewGame()
     {
         parent::prepareToNewGame();
         $this->status = "Я готова к прогулке, пойдем скорее гулять.";
     }
 
+    /**
+     * Осуществляет движение ламы по полю.
+     * Переопределяет метод из суперкласса.
+     *
+     * @param int $direction
+     * @return string
+     */
     public function move(int $direction): string
     {
         $this->finished = $this->stepsNum == $this->maxStepsNum - 1;

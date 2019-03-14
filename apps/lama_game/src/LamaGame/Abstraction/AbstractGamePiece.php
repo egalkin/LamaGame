@@ -11,7 +11,10 @@ namespace App\LamaGame\Abstraction;
 
 /**
  * Class AbstractGamePiece
- * @package App\LamaGame
+ *
+ * Абстрактный класс игровой фишки.
+ *
+ * @package App\LamaGame\Abstraction
  */
 abstract class AbstractGamePiece
 {
@@ -67,7 +70,7 @@ abstract class AbstractGamePiece
     }
 
     /**
-     * Эта функция изменяет координаты точки по оси X и Y
+     * Эта функция изменяет координаты фишки по оси X и Y
      * в зависимости от заданных преращений координат
      *
      * @param int $dx

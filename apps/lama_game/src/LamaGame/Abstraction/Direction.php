@@ -10,10 +10,10 @@ namespace App\LamaGame\Abstraction;
 
 
 /**
- * Enum класс, представляющий направление движения,
+ * Enum класс, представляющий направление движения.
  *
  * Class Direction
- * @package App\LamaGame
+ * @package App\LamaGame\Abstraction
  */
 class Direction
 {

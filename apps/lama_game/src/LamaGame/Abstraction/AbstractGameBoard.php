@@ -12,7 +12,10 @@ use App\LamaGame\Exception\ScareException;
 
 /**
  * Class AbstractGameBoard
- * @package App\LamaGame
+ *
+ * Абстрактный класс, представляющий доску для игры.
+ *
+ * @package App\LamaGame\Abstraction
  */
 abstract class AbstractGameBoard
 {
