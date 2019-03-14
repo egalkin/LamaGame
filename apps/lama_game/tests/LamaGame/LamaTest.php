@@ -8,20 +8,21 @@
 
 namespace App\Tests\LamaGame;
 
-use App\LamaGame\AbstractGamePiece;
+
+use App\LamaGame\Lama;
 use PHPUnit\Framework\TestCase;
 
 class LamaTest extends TestCase
 {
-    public function testPointMoving()
+    public function testLamaPieceMoving()
     {
-        $point = new LamaTest(0,0);
+        $point = new Lama(0,0);
         $point->move(-5, 5);
 
         $this->assertEquals($point, new Lama(-5,5));
     }
 
-    public function testPointReset()
+    public function testLamaPieceReset()
     {
         $boardSize = 15;
         $point = new Lama(512,128);
