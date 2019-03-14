@@ -20,7 +20,7 @@ class GameBoardTest extends TestCase
     {
         $gameBoard = new GameBoard(10);
         $gameBoard->move(Direction::South);
-        $this->assertEquals($gameBoard->getPoint(), new Point(0, $gameBoard->getBoardSize()-1));
+        $this->assertEquals($gameBoard->getPoint(), new Point(0, $gameBoard->getBoardSize()-2));
     }
 
     public function testIncorrectMoving()
@@ -28,7 +28,7 @@ class GameBoardTest extends TestCase
         $gameBoard = new GameBoard(10);
         $gameBoard->move(Direction::West);
         $this->assertEquals($gameBoard->getPoint(), new Point(0 + $gameBoard->getScareStepsNum(),
-            $gameBoard->getBoardSize()));
+            $gameBoard->getBoardSize()-1));
     }
 
 

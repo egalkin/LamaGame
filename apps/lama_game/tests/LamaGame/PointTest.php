@@ -27,6 +27,6 @@ class PointTest extends TestCase
         $point = new Point(512,128);
         $point->resetToOriginPosition($boardSize);
 
-        $this->assertEquals($point, new Point(0, $boardSize));
+        $this->assertEquals($point, new Point(0, $boardSize-1));
     }
 }
