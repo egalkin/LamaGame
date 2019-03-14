@@ -6,7 +6,7 @@
  * Time: 17:52
  */
 
-namespace App\LamaGame;
+namespace App\LamaGame\Abstraction;
 
 use App\LamaGame\Exception\ScareException;
 

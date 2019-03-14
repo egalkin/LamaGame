@@ -8,6 +8,7 @@
 
 namespace App\LamaGame;
 
+use App\LamaGame\Abstraction\AbstractGameBoard;
 
 class LamaGameBoard extends AbstractGameBoard
 {

@@ -7,7 +7,7 @@
  */
 
 
-namespace App\LamaGame;
+namespace App\LamaGame\Abstraction;
 
 /**
  * Class AbstractGamePiece

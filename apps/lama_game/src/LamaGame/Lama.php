@@ -8,6 +8,7 @@
 
 namespace App\LamaGame;
 
+use App\LamaGame\Abstraction\AbstractGamePiece;
 
 class Lama extends AbstractGamePiece
 {
